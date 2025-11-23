@@ -211,7 +211,7 @@ class RepoRow(Gtk.ListBoxRow):
         
         # Badge do autor
         author_badge = Gtk.Label()
-        author_badge.set_markup(f"<span size='small' color='#666'>por {GObject.markup_escape_text(repo.get('owner',{}).get('login',''))}</span>")
+        author_badge.set_markup(f"<span size='small' color='#888'>por {GObject.markup_escape_text(repo.get('owner',{}).get('login',''))}</span>")
         title_box.pack_start(author_badge, False, False, 8)
         
         info_box.pack_start(title_box, False, False, 0)
@@ -382,7 +382,7 @@ class MainWindow(Gtk.Window):
         self.set_border_width(0)
         
         # Aplicar CSS customizado
-        self.apply_custom_css()
+        self.apply_dark_theme()
 
         # carrega pasta salva (se existir)
         saved = load_saved_folder()
@@ -776,47 +776,282 @@ class MainWindow(Gtk.Window):
             except Exception:
                 pass
 
-    def apply_custom_css(self):
-        """Aplica CSS customizado para melhorar a aparência"""
+    def apply_dark_theme(self):
+        """Aplica tema escuro moderno"""
         css_provider = Gtk.CssProvider()
         css = """
+        /* Tema Escuro Moderno - pluStore GIMP */
+        
+        /* Fundo principal */
         window {
-            background-color: #f5f5f5;
-            font-family: sans-serif;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        /* Header bar moderno */
         .header-bar {
-            background: linear-gradient(to bottom, #4a90e2, #357abd);
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
             color: white;
-            padding: 12px 20px;
-            border-bottom: 2px solid #2d5a8c;
+            padding: 15px 25px;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .header-title {
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         
         .header-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 12px;
+            color: #b0b0b0;
+            font-size: 13px;
+            font-weight: 400;
         }
         
+        /* Sidebar escura */
+        .sidebar {
+            background: linear-gradient(180deg, #2d2d2d 0%, #252525 100%);
+            border-right: 1px solid #333;
+            border-radius: 0px;
+        }
+        
+        /* Lista de categorias */
+        .category-list {
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 5px;
+        }
+        
+        .category-list row {
+            background: transparent;
+            padding: 12px 16px;
+            border-bottom: 1px solid #333;
+            transition: all 0.2s ease;
+        }
+        
+        .category-list row:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        
+        .category-list row:last-child {
+            border-bottom: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        
+        .category-list row:hover {
+            background: #3a3a3a;
+            border-color: #555;
+        }
+        
+        .category-list row:selected {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            border-color: #4a90e2;
+        }
+        
+        /* Área de conteúdo */
+        .content-area {
+            background: #2d2d2d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        /* Barra de pesquisa moderna */
+        .search-entry {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border: 2px solid #444;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 14px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .search-entry:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2), inset 0 1px 3px rgba(0,0,0,0.3);
+            background: #404040;
+        }
+        
+        .search-entry:placeholder {
+            color: #888;
+        }
+        
+        /* Botões modernos */
         button {
+            border: none;
             border-radius: 6px;
-            padding: 8px 16px;
-            font-weight: 500;
-            transition: all 0.2s;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            background: #404040;
+            color: #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         button:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background: #4a4a4a;
         }
         
-        list row:selected {
-            background-color: #4a90e2;
+        button:active {
+            transform: translateY(0px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        /* Botão primário */
+        .primary-button {
+            background: linear-gradient(135deg, #27ae60 0%, #219a52 100%);
             color: white;
+        }
+        
+        .primary-button:hover {
+            background: linear-gradient(135deg, #219a52 0%, #1e8c4a 100%);
+        }
+        
+        /* Botão de ação */
+        .action-button {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+        
+        .action-button:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #2471a3 100%);
+        }
+        
+        /* Botão de perigo */
+        .danger-button {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+        
+        .danger-button:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+        }
+        
+        /* Cards de plugins */
+        .plugin-card {
+            background: linear-gradient(135deg, #3a3a3a 0%, #2d2d2d 100%);
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 10px 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .plugin-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border-color: #555;
+        }
+        
+        /* Status bar escura */
+        .status-bar {
+            background: linear-gradient(135deg, #2d2d2d 0%, #252525 100%);
+            color: #b0b0b0;
+            padding: 8px 20px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+        }
+        
+        /* Scrollbar personalizada */
+        scrollbar {
+            background: #2d2d2d;
+            border: none;
+        }
+        
+        scrollbar slider {
+            background: #555;
+            border-radius: 8px;
+            min-width: 12px;
+            min-height: 12px;
+            border: 2px solid #2d2d2d;
+        }
+        
+        scrollbar slider:hover {
+            background: #666;
+        }
+        
+        scrollbar slider:active {
+            background: #4a90e2;
+        }
+        
+        scrollbar trough {
+            background: #2d2d2d;
+            border: none;
+        }
+        
+        scrollbar button {
+            background: transparent;
+            color: #666;
+            border: none;
+            box-shadow: none;
+        }
+        
+        /* Labels e textos */
+        label {
+            color: #e0e0e0;
+        }
+        
+        .dim-label {
+            color: #888;
+        }
+        
+        /* Separadores */
+        separator {
+            background: #444;
+        }
+        
+        /* Menu dropdown */
+        menu {
+            background: #3a3a3a;
+            border: 1px solid #555;
+            border-radius: 6px;
+            padding: 5px 0;
+        }
+        
+        menuitem {
+            background: transparent;
+            color: #e0e0e0;
+            padding: 8px 20px;
+            border: none;
+        }
+        
+        menuitem:hover {
+            background: #4a90e2;
+            color: white;
+        }
+        
+        /* Diálogos */
+        .dialog {
+            background: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 8px;
+        }
+        
+        /* Entrada de texto */
+        entry {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 4px;
+            padding: 8px 12px;
+        }
+        
+        entry:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
         }
         """
         
@@ -835,13 +1070,13 @@ class MainWindow(Gtk.Window):
     def create_header(self):
         """Cria um header bar customizado"""
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
-        header_box.set_size_request(-1, 60)
+        header_box.set_size_request(-1, 70)
         
         # Ícone e título
         title_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=2)
-        title_box.set_margin_start(20)
-        title_box.set_margin_top(8)
-        title_box.set_margin_bottom(8)
+        title_box.set_margin_start(25)
+        title_box.set_margin_top(12)
+        title_box.set_margin_bottom(12)
         
         title = Gtk.Label()
         title.set_markup('<span size="x-large" weight="bold">🎨 pluStore GIMP</span>')
@@ -861,7 +1096,7 @@ class MainWindow(Gtk.Window):
         info_btn.set_relief(Gtk.ReliefStyle.NONE)
         info_btn.set_tooltip_text('Sobre o pluStore GIMP')
         info_btn.connect('clicked', self.show_about_dialog)
-        info_btn.set_margin_end(10)
+        info_btn.set_margin_end(15)
         header_box.pack_end(info_btn, False, False, 0)
         
         return header_box
