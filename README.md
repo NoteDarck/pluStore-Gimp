@@ -34,6 +34,7 @@ sudo pacman -S python-gobject gtk3 python-pip
 Instalação das Dependências Python
 bash
 pip3 install requests
+
 Opcional: Token do GitHub (Recomendado)
 Para evitar limites de requisição da API do GitHub:
 
