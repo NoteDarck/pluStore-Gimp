@@ -69,14 +69,24 @@ Clique em "⬇️ Instalar" para adicionar novos plugins
 Use "🔄 Gerenciar" para atualizar ou desinstalar
 
 🎯 Categorias Disponíveis
+
 Categoria	Descrição	Exemplos
+
 🎨 Filtros	Efeitos de processamento de imagem	GMIC, Resynthesizer
+
 📷 Fotografia	Ferramentas para fotógrafos	G'MIC, Wavelet Denoise
+
 ✨ Efeitos	Efeitos visuais criativos	BIMP, Layer Effects
+
 🎭 Texturas	Geração e aplicação de texturas	Seamless Texture
+
 🤖 IA	Plugins com inteligência artificial	Stable Diffusion, GFPGAN
+
 💾 Exportação	Exportação e conversão	Export Layers, WebP
+
+
 🛠️ Estrutura do Projeto
+
 text
 plustore_gimp.py          # Script principal
 ~/.config/gimp_plugin_store.json  # Configurações do usuário
