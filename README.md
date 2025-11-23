@@ -18,24 +18,28 @@ Funcionalidades
 
 🚀 Instalação
 Pré-requisitos
+
+
 Ubuntu/Debian:
 
-bash
 sudo apt update
+
 sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 python3-pip
+
 Fedora:
 
-bash
 sudo dnf install python3-gobject gtk3 python3-pip
+
 Arch Linux:
 
-bash
 sudo pacman -S python-gobject gtk3 python-pip
+
 Instalação das Dependências Python
-bash
+
 pip3 install requests
 
 Opcional: Token do GitHub (Recomendado)
+
 Para evitar limites de requisição da API do GitHub:
 
 Crie um token em GitHub Settings > Developer settings > Personal access tokens
