@@ -89,7 +89,10 @@ Categoria	Descrição	Exemplos
 
 text
 plustore_gimp.py          # Script principal
-~/.config/gimp_plugin_store.json  # Configurações do usuário
+~/.config/gimp_plugin_store.json  
+
+# Configurações do usuário
+
 🔧 Funcionalidades Técnicas
 Instalação de Plugins
 Download automático do branch principal
@@ -153,7 +156,7 @@ Contribuições são bem-vindas! Areas onde você pode ajudar:
 📚 Documentação e tutoriais
 
 📄 Licença
-Este projeto é distribuído sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto é distribuído sob a licença GPL-3.0. Veja o arquivo LICENSE para mais detalhes.
 
 ⚠️ Aviso Legal
 Este software não é afiliado oficialmente ao GIMP ou ao GitHub. Plugins são instalados por conta e risco do usuário. Sempre verifique a segurança dos repositórios antes da instalação.
